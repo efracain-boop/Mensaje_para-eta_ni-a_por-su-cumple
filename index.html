@@ -206,6 +206,31 @@
       background: linear-gradient(135deg, #4361ee, #7209b7);
     }
 
+    .galeria-dos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .foto {
+      overflow: hidden;
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      min-height: 270px;
+      display: block;
+      object-fit: cover;
+      border-radius: 18px;
+      transition: transform 0.4s ease;
+    }
+
+    .foto img:hover {
+      transform: scale(1.04);
+    }
+
     .texto-foto {
       margin-top: 9px;
       font-size: 14px;
@@ -240,7 +265,8 @@
     }
 
     @media (max-width: 680px) {
-      .galeria {
+      .galeria,
+      .galeria-dos {
         grid-template-columns: 1fr;
       }
 
@@ -486,25 +512,22 @@
         Aquí pondremos las fotos reales más adelante.
       </p>
 
-      <div class="galeria">
+      <div class="galeria galeria-dos">
         <div>
-          <div class="foto">📸</div>
+          <div class="foto">
+            <img src="foto1.png" alt="Primer recuerdo especial de Hany">
+          </div>
           <div class="texto-foto">
-            Un momento especial
+            Un recuerdo muy especial ❤️
           </div>
         </div>
 
         <div>
-          <div class="foto foto2">💖</div>
-          <div class="texto-foto">
-            Una sonrisa inolvidable
+          <div class="foto">
+            <img src="foto2.png" alt="Segundo recuerdo especial de Hany">
           </div>
-        </div>
-
-        <div>
-          <div class="foto foto3">🎂</div>
           <div class="texto-foto">
-            Otro bonito recuerdo
+            Una sonrisa inolvidable ✨
           </div>
         </div>
       </div>
