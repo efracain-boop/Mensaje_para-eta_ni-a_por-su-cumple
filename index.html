@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Una sorpresa para ti 🎉</title>
+  <title>Una sorpresa para Hany 🎁</title>
 
   <style>
     * {
@@ -14,129 +14,245 @@
       margin: 0;
       min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffd6e7, #ff9fc4);
+      background:
+        radial-gradient(circle at top, #2d1b69 0%, #160c3b 45%, #09051d 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .stars,
+    .stars::before,
+    .stars::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+      background-size: 70px 70px, 110px 110px;
+      background-position: 0 0, 35px 55px;
+      opacity: 0.35;
+      animation: twinkle 3s infinite alternate;
+      pointer-events: none;
+    }
+
+    .stars::before {
+      background-size: 90px 90px;
+      opacity: 0.2;
+      animation-delay: 1s;
+    }
+
+    .stars::after {
+      background-size: 130px 130px;
+      opacity: 0.15;
+      animation-delay: 2s;
+    }
+
+    .screen {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      overflow-x: hidden;
-      color: #4a2340;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 430px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 24px;
-      padding: 28px 22px;
-      text-align: center;
-      box-shadow: 0 18px 45px rgba(80, 20, 60, 0.25);
+      padding: 24px;
       position: relative;
       z-index: 2;
     }
 
-    .gift {
-      font-size: 65px;
-      animation: bounce 1.8s infinite;
+    .panel {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      border-radius: 26px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     }
 
-    h1 {
-      margin: 10px 0;
-      font-size: 30px;
+    .lock {
+      font-size: 64px;
+      animation: pulse 1.8s infinite;
     }
 
-    .intro {
+    h1,
+    h2 {
+      margin: 12px 0;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      margin-top: 12px;
       font-size: 17px;
-      line-height: 1.5;
-      margin-bottom: 22px;
+      outline: none;
+      text-align: center;
     }
 
     button {
+      width: 100%;
+      margin-top: 14px;
       border: none;
       border-radius: 999px;
-      padding: 14px 22px;
+      padding: 14px 18px;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
-      background: #d63384;
+      background: linear-gradient(90deg, #ff4fa3, #ff8a5b);
       color: white;
-      box-shadow: 0 8px 18px rgba(214, 51, 132, 0.3);
+      box-shadow: 0 10px 24px rgba(255, 79, 163, 0.35);
     }
 
     button:active {
       transform: scale(0.98);
     }
 
-    #secret {
+    #error {
+      min-height: 24px;
+      margin-top: 10px;
+      color: #ffd3e7;
+      font-weight: bold;
+    }
+
+    #giftScreen,
+    #letterScreen {
       display: none;
-      margin-top: 24px;
-      padding: 20px;
-      border-radius: 18px;
-      background: #fff1f7;
-      line-height: 1.6;
-      font-size: 17px;
-      animation: appear 0.7s ease;
+    }
+
+    .gift-box {
+      font-size: 110px;
+      cursor: pointer;
+      display: inline-block;
+      animation: shake 1.8s infinite;
+      user-select: none;
+    }
+
+    .hint {
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    .letter {
+      background: rgba(255, 255, 255, 0.96);
+      color: #4a2340;
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
+      animation: appear 0.8s ease;
+    }
+
+    .letter .icon {
+      font-size: 62px;
+      animation: bounce 1.8s infinite;
     }
 
     .signature {
       margin-top: 18px;
-      font-weight: bold;
       color: #9b1c62;
+      font-weight: bold;
     }
 
-    .confetti {
-      font-size: 28px;
-      letter-spacing: 6px;
-      margin-top: 18px;
+    .confetti-piece {
+      position: fixed;
+      top: -20px;
+      width: 10px;
+      height: 16px;
+      opacity: 0.9;
+      z-index: 5;
+      animation: fall linear forwards;
     }
 
     .balloon {
       position: fixed;
-      bottom: -120px;
-      font-size: 42px;
-      animation: floatUp 9s linear infinite;
+      bottom: -100px;
+      font-size: 46px;
       z-index: 1;
+      animation: floatUp 10s linear infinite;
     }
 
-    .balloon:nth-child(1) {
+    .balloon:nth-of-type(1) {
       left: 8%;
       animation-delay: 0s;
     }
 
-    .balloon:nth-child(2) {
-      left: 25%;
+    .balloon:nth-of-type(2) {
+      left: 28%;
       animation-delay: 2s;
     }
 
-    .balloon:nth-child(3) {
-      left: 55%;
+    .balloon:nth-of-type(3) {
+      left: 56%;
       animation-delay: 4s;
     }
 
-    .balloon:nth-child(4) {
-      left: 80%;
+    .balloon:nth-of-type(4) {
+      left: 82%;
       animation-delay: 6s;
     }
 
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
+    @keyframes twinkle {
+      from {
+        opacity: 0.2;
+      }
+
+      to {
+        opacity: 0.45;
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
       }
 
       50% {
-        transform: translateY(-10px);
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-5deg);
+      }
+
+      75% {
+        transform: rotate(5deg);
       }
     }
 
     @keyframes appear {
       from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(20px) scale(0.97);
       }
 
       to {
         opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
         transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
       }
     }
 
@@ -146,36 +262,78 @@
       }
 
       to {
-        transform: translateY(-130vh);
+        transform: translateY(-125vh);
+      }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="stars"></div>
 
   <div class="balloon">🎈</div>
   <div class="balloon">🎈</div>
   <div class="balloon">🎈</div>
   <div class="balloon">🎈</div>
 
-  <main class="card">
-    <div class="gift">🎁</div>
+  <section id="loginScreen" class="screen">
+    <div class="panel">
+      <div class="lock">🔐</div>
 
-    <h1>¡Feliz cumpleaños, amiga!</h1>
+      <h1>Tienes un regalo especial</h1>
 
-    <p class="intro">
-      Hoy no podía dejar pasar la oportunidad de prepararte una pequeña sorpresa.
-      Pero cuidado… este mensaje contiene mucha alegría, buenos deseos y una dosis
-      peligrosa de cariño. 😄
-    </p>
+      <p>
+        Esta sorpresa está protegida.
+        Escribe la contraseña para abrirla.
+      </p>
 
-    <button id="revealBtn">
-      Abrir mensaje secreto 🔐
-    </button>
+      <input
+        id="passwordInput"
+        type="password"
+        placeholder="Escribe la contraseña"
+        autocomplete="off"
+      >
 
-    <section id="secret">
-      <h2>🎉 ¡Sorpresa! 🎉</h2>
+      <button id="unlockButton">
+        Abrir regalo
+      </button>
+
+      <div id="error"></div>
+    </div>
+  </section>
+
+  <section id="giftScreen" class="screen">
+    <div class="panel">
+      <h1>🎉 Contraseña correcta 🎉</h1>
+
+      <p class="hint">
+        Ahora toca la caja para descubrir tu sorpresa.
+      </p>
+
+      <div id="giftBox" class="gift-box">🎁</div>
+
+      <p class="hint">
+        Toca el regalo
+      </p>
+    </div>
+  </section>
+
+  <section id="letterScreen" class="screen">
+    <div class="letter">
+      <div class="icon">🎂</div>
+
+      <h1>¡Feliz cumpleaños, Hany!</h1>
+
+      <p>
+        Hoy no podía dejar pasar la oportunidad de prepararte una sorpresa
+        especial.
+      </p>
 
       <p>
         Espero que hoy te consientan muchísimo, que comas pastel sin contar las
@@ -183,13 +341,13 @@
       </p>
 
       <p>
-        Gracias por ser una amiga increíble, por las risas, los buenos momentos
-        y por hacer que todo sea un poco más divertido.
+        Gracias por ser una amiga increíble, por las risas, por los buenos
+        momentos y por hacer que todo sea un poco más divertido.
       </p>
 
       <p>
         Deseo que este nuevo año de vida venga lleno de sueños cumplidos,
-        aventuras, felicidad y muchas razones para sonreír.
+        aventuras, felicidad y muchísimas razones para sonreír.
       </p>
 
       <p>
@@ -201,21 +359,76 @@
         William 💖
       </div>
 
-      <div class="confetti">
-        🎊 🎂 🎈 🎊
-      </div>
-    </section>
-  </main>
+      <p>🎊 🎈 🎂 🎉</p>
+    </div>
+  </section>
 
   <script>
-    const button = document.getElementById("revealBtn");
-    const secret = document.getElementById("secret");
+    const PASSWORD = "Hany_192026";
 
-    button.addEventListener("click", function () {
-      secret.style.display = "block";
-      button.style.display = "none";
+    const loginScreen = document.getElementById("loginScreen");
+    const giftScreen = document.getElementById("giftScreen");
+    const letterScreen = document.getElementById("letterScreen");
+
+    const passwordInput = document.getElementById("passwordInput");
+    const unlockButton = document.getElementById("unlockButton");
+    const error = document.getElementById("error");
+    const giftBox = document.getElementById("giftBox");
+
+    function checkPassword() {
+      if (passwordInput.value === PASSWORD) {
+        error.textContent = "";
+        loginScreen.style.display = "none";
+        giftScreen.style.display = "flex";
+      } else {
+        error.textContent = "❌ Contraseña incorrecta. Inténtalo nuevamente.";
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    }
+
+    function createConfetti() {
+      const colors = [
+        "#ff4fa3",
+        "#ffd166",
+        "#06d6a0",
+        "#4cc9f0",
+        "#ffffff"
+      ];
+
+      for (let i = 0; i < 90; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti-piece";
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration =
+          3 + Math.random() * 3 + "s";
+        confetti.style.animationDelay =
+          Math.random() * 1.5 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 7000);
+      }
+    }
+
+    unlockButton.addEventListener("click", checkPassword);
+
+    passwordInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+
+    giftBox.addEventListener("click", function () {
+      giftScreen.style.display = "none";
+      letterScreen.style.display = "flex";
+      createConfetti();
     });
   </script>
-
 </body>
 </html>
