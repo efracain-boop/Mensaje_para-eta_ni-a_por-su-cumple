@@ -25,7 +25,7 @@
       font-family: Arial, Helvetica, sans-serif;
       color: white;
       background:
-        radial-gradient(circle at top, #342074 0%, #190d42 45%, #080419 100%);
+        radial-gradient(circle at top, #392477 0%, #190d42 48%, #080419 100%);
       overflow-x: hidden;
     }
 
@@ -34,9 +34,9 @@
       font-family: inherit;
     }
 
-    .stars,
-    .stars::before,
-    .stars::after {
+    .estrellas,
+    .estrellas::before,
+    .estrellas::after {
       content: "";
       position: fixed;
       inset: 0;
@@ -50,15 +50,15 @@
       animation: brillar 3s infinite alternate;
     }
 
-    .stars::before {
+    .estrellas::before {
       background-size: 90px 90px;
       opacity: 0.2;
       animation-delay: 1s;
     }
 
-    .stars::after {
+    .estrellas::after {
       background-size: 130px 130px;
-      opacity: 0.15;
+      opacity: 0.14;
       animation-delay: 2s;
     }
 
@@ -80,27 +80,27 @@
     .panel,
     .carta {
       width: 100%;
-      max-width: 470px;
+      max-width: 480px;
       padding: 30px 24px;
-      border-radius: 26px;
+      border-radius: 28px;
       text-align: center;
     }
 
     .panel {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.38);
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
     }
 
     .panel-ancho {
-      max-width: 850px;
+      max-width: 880px;
     }
 
     .carta {
       color: #4a2340;
       background: rgba(255, 255, 255, 0.97);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.38);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
     }
 
     h1,
@@ -110,11 +110,22 @@
 
     p {
       line-height: 1.65;
+      font-size: 17px;
     }
 
-    .icono-grande {
-      font-size: 68px;
+    .icono {
+      font-size: 70px;
       animation: saltar 1.8s infinite;
+    }
+
+    .mensaje-historia {
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      line-height: 1.6;
+      padding: 10px;
     }
 
     .boton {
@@ -122,13 +133,18 @@
       margin-top: 16px;
       border: none;
       border-radius: 999px;
-      padding: 14px 20px;
+      padding: 15px 20px;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
       color: white;
       background: linear-gradient(90deg, #ff4fa3, #ff8a5b);
       box-shadow: 0 10px 24px rgba(255, 79, 163, 0.35);
+      transition: transform 0.2s ease;
+    }
+
+    .boton:hover {
+      transform: translateY(-2px);
     }
 
     .boton:active {
@@ -139,27 +155,39 @@
       width: 100%;
       margin-top: 12px;
       border: none;
-      border-radius: 14px;
-      padding: 14px 16px;
+      border-radius: 15px;
+      padding: 15px 16px;
       font-size: 17px;
       text-align: center;
       outline: none;
     }
 
     .error {
-      min-height: 24px;
+      min-height: 28px;
       color: #ffd3e7;
       font-weight: bold;
     }
 
+    .pista {
+      font-size: 14px;
+      opacity: 0.85;
+      font-style: italic;
+    }
+
     .regalo {
       display: inline-block;
-      width: auto;
       border: none;
       background: transparent;
-      font-size: 120px;
+      font-size: 125px;
       cursor: pointer;
       animation: moverRegalo 1.7s infinite;
+    }
+
+    .mision {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 16px;
+      margin: 18px 0;
     }
 
     .galeria {
@@ -170,14 +198,13 @@
     }
 
     .foto {
-      min-height: 280px;
+      min-height: 270px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 18px;
-      padding: 18px;
-      background: linear-gradient(135deg, #ff4fa3, #7b2cbf);
       font-size: 70px;
+      background: linear-gradient(135deg, #ff4fa3, #7b2cbf);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     }
 
@@ -190,7 +217,7 @@
     }
 
     .texto-foto {
-      margin-top: 8px;
+      margin-top: 9px;
       font-size: 14px;
     }
 
@@ -201,7 +228,7 @@
     }
 
     .iconos-finales {
-      font-size: 30px;
+      font-size: 31px;
       letter-spacing: 7px;
     }
 
@@ -212,6 +239,14 @@
       height: 16px;
       z-index: 20;
       animation: caer linear forwards;
+    }
+
+    .corazon {
+      position: fixed;
+      bottom: -40px;
+      font-size: 28px;
+      z-index: 18;
+      animation: subirCorazon linear forwards;
     }
 
     @media (max-width: 680px) {
@@ -228,8 +263,8 @@
         font-size: 28px;
       }
 
-      .foto {
-        min-height: 230px;
+      .mensaje-historia {
+        font-size: 19px;
       }
     }
 
@@ -273,11 +308,11 @@
       }
 
       25% {
-        transform: rotate(-5deg);
+        transform: rotate(-6deg);
       }
 
       75% {
-        transform: rotate(5deg);
+        transform: rotate(6deg);
       }
     }
 
@@ -286,41 +321,54 @@
         transform: translateY(110vh) rotate(720deg);
       }
     }
+
+    @keyframes subirCorazon {
+      to {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="stars"></div>
+  <div class="estrellas"></div>
 
-  <!-- PANTALLA 1 -->
+  <!-- PANTALLA 1: HISTORIA -->
   <section id="pantalla1" class="pantalla activa">
     <div class="panel">
-      <div class="icono-grande">✨</div>
+      <div id="iconoHistoria" class="icono">👀</div>
 
-      <h1>Hay una sorpresa para ti</h1>
-
-      <p>
-        Avanza paso a paso y descubre cada parte de este regalo especial.
-      </p>
+      <div
+        id="textoHistoria"
+        class="mensaje-historia"
+      >
+        Un momento...
+      </div>
 
       <button
+        id="botonHistoria"
         class="boton"
-        onclick="mostrarPantalla('pantalla2')"
       >
-        Comenzar
+        Continuar
       </button>
     </div>
   </section>
 
-  <!-- PANTALLA 2 -->
+  <!-- PANTALLA 2: CONTRASEÑA -->
   <section id="pantalla2" class="pantalla">
     <div class="panel">
-      <div class="icono-grande">🔐</div>
+      <div class="icono">🔐</div>
 
-      <h2>Acceso secreto</h2>
+      <h1>¿Conoces la contraseña secreta?</h1>
 
       <p>
-        Escribe la contraseña para poder continuar.
+        Internet está lleno de curiosos. 🤭
+        No puedo entregar este regalo a cualquiera.
+      </p>
+
+      <p>
+        Necesito comprobar que realmente eres la cumpleañera.
       </p>
 
       <input
@@ -335,8 +383,12 @@
         id="botonContrasena"
         class="boton"
       >
-        Abrir sorpresa
+        Abrir mi regalo
       </button>
+
+      <p class="pista">
+        Pista: la verdadera dueña del regalo la sabe. 😉
+      </p>
 
       <p
         id="mensajeError"
@@ -345,13 +397,46 @@
     </div>
   </section>
 
-  <!-- PANTALLA 3 -->
+  <!-- PANTALLA 3: IDENTIDAD CONFIRMADA -->
   <section id="pantalla3" class="pantalla">
     <div class="panel">
-      <h2>¡Contraseña correcta! 🎉</h2>
+      <div class="icono">😌</div>
+
+      <h1>¡Ufff, menos mal!</h1>
 
       <p>
-        Ahora toca la caja de regalo.
+        Ya me estaba preocupando...
+      </p>
+
+      <p>
+        Contraseña correcta. Creo que sí eres la dueña del regalo. 😄
+      </p>
+
+      <p>
+        Pero antes de entregártelo tengo una pequeña misión para ti.
+      </p>
+
+      <div class="mision">
+        <strong>Misión:</strong><br><br>
+        Toca la caja de regalo y prepárate para comenzar la aventura. ✨
+      </div>
+
+      <button
+        class="boton"
+        onclick="mostrarPantalla('pantalla4')"
+      >
+        Aceptar misión
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 4: CAJA -->
+  <section id="pantalla4" class="pantalla">
+    <div class="panel">
+      <h1>Tu regalo está aquí</h1>
+
+      <p>
+        Parece tranquilo... pero creo que está escondiendo algo. 👀
       </p>
 
       <button
@@ -362,44 +447,53 @@
         🎁
       </button>
 
-      <p>Toca el regalo</p>
+      <p>
+        Toca la caja para abrirla.
+      </p>
     </div>
   </section>
 
-  <!-- PANTALLA 4 -->
-  <section id="pantalla4" class="pantalla">
+  <!-- PANTALLA 5: PRIMER MENSAJE -->
+  <section id="pantalla5" class="pantalla">
     <div class="panel">
-      <div class="icono-grande">💖</div>
+      <div class="icono">💖</div>
 
-      <h2>Un primer mensaje para ti</h2>
+      <h1>¡Sorpresa!</h1>
 
       <p>
-        Hoy es un día especial porque celebramos tu vida, tu alegría
-        y todos esos momentos que haces más bonitos con tu forma de ser.
+        No, todavía no es la carta final. 😏
       </p>
 
       <p>
-        Esta sorpresa fue preparada con mucho cariño especialmente para ti.
+        Primero quería recordarte que hoy celebramos tu vida,
+        tu alegría y esa forma tan especial que tienes de hacer
+        que los momentos sean más divertidos.
+      </p>
+
+      <p>
+        Y como un regalo normal era demasiado sencillo...
+        decidí convertirlo en una pequeña aventura.
       </p>
 
       <button
         class="boton"
-        onclick="mostrarPantalla('pantalla5')"
+        onclick="mostrarPantalla('pantalla6')"
       >
-        Ver recuerdos
+        Descubrir la siguiente sorpresa
       </button>
     </div>
   </section>
 
-  <!-- PANTALLA 5 -->
-  <section id="pantalla5" class="pantalla">
+  <!-- PANTALLA 6: FOTOS -->
+  <section id="pantalla6" class="pantalla">
     <div class="panel panel-ancho">
-      <div class="icono-grande">📸</div>
+      <div class="icono">📸</div>
 
-      <h2>Nuestros recuerdos</h2>
+      <h1>Algunos recuerdos</h1>
 
       <p>
-        Después reemplazaremos estos cuadros por las fotos reales.
+        Aquí colocaremos tus fotos reales.
+        Por ahora están estos espacios de ejemplo.
       </p>
 
       <div class="galeria">
@@ -427,45 +521,57 @@
 
       <button
         class="boton"
-        onclick="mostrarPantalla('pantalla6')"
+        onclick="mostrarPantalla('pantalla7')"
       >
-        Continuar
+        Continuar la aventura
       </button>
     </div>
   </section>
 
-  <!-- PANTALLA 6 -->
-  <section id="pantalla6" class="pantalla">
+  <!-- PANTALLA 7: SUSPENSO -->
+  <section id="pantalla7" class="pantalla">
     <div class="panel">
-      <div class="icono-grande">🎬</div>
+      <div class="icono">🤔</div>
 
-      <h2>Una pausa especial</h2>
+      <h1>Espera...</h1>
 
       <p>
-        Aquí podremos colocar después un video corto, una canción
-        o un mensaje grabado.
+        ¿Segura que hoy es tu cumpleaños?
+      </p>
+
+      <p>
+        Porque si no lo es...
+      </p>
+
+      <p>
+        ¡Voy a quedar muy mal! 😂
+      </p>
+
+      <p>
+        Bueno, confiaremos en la contraseña.
+        Ahora sí puedes abrir la carta.
       </p>
 
       <button
         class="boton"
-        onclick="mostrarPantalla('pantalla7')"
+        onclick="mostrarPantalla('pantalla8')"
       >
         Abrir carta final
       </button>
     </div>
   </section>
 
-  <!-- PANTALLA 7 -->
-  <section id="pantalla7" class="pantalla">
+  <!-- PANTALLA 8: CARTA -->
+  <section id="pantalla8" class="pantalla">
     <div class="carta">
-      <div class="icono-grande">💌</div>
+      <div class="icono">💌</div>
 
       <h1>¡Feliz cumpleaños, Hany!</h1>
 
       <p>
         Espero que hoy te consientan muchísimo, que comas pastel
-        sin contar las calorías y que recibas tantos regalos que ya
-        no sepas dónde guardarlos.
+        sin contar las calorías y que recibas tantos regalos que
+        ya no sepas dónde guardarlos.
       </p>
 
       <p>
@@ -475,7 +581,7 @@
       </p>
 
       <p>
-        Deseo que este nuevo año de vida venga lleno de sueños
+        Deseo que este nuevo año de vida llegue lleno de sueños
         cumplidos, aventuras, felicidad y muchísimas razones
         para sonreír.
       </p>
@@ -491,19 +597,47 @@
 
       <button
         class="boton"
-        onclick="sorpresaFinal()"
+        onclick="mostrarPantalla('pantalla9')"
       >
-        Ver sorpresa final
+        Terminar
       </button>
     </div>
   </section>
 
-  <!-- PANTALLA 8 -->
-  <section id="pantalla8" class="pantalla">
+  <!-- PANTALLA 9: FALSO FINAL -->
+  <section id="pantalla9" class="pantalla">
     <div class="panel">
-      <div class="icono-grande">🎉</div>
+      <div class="icono">😏</div>
+
+      <h1>¿Creías que ya había terminado?</h1>
+
+      <p>
+        Pues no...
+      </p>
+
+      <p>
+        Todavía falta una última sorpresa.
+      </p>
+
+      <button
+        class="boton"
+        onclick="sorpresaFinal()"
+      >
+        Ver última sorpresa
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 10: FINAL -->
+  <section id="pantalla10" class="pantalla">
+    <div class="panel">
+      <div class="icono">🎉</div>
 
       <h1>¡Feliz cumpleaños!</h1>
+
+      <p>
+        Gracias por existir y por ser una persona tan especial.
+      </p>
 
       <p>
         Que este nuevo año de vida esté lleno de alegría,
@@ -518,13 +652,55 @@
         class="boton"
         onclick="reiniciarSorpresa()"
       >
-        Volver al inicio
+        Volver a comenzar
       </button>
     </div>
   </section>
 
   <script>
     const CONTRASENA_CORRECTA = "Hany_192026";
+
+    const historias = [
+      {
+        icono: "👀",
+        texto: "Un momento... Antes de continuar necesito comprobar algo."
+      },
+      {
+        icono: "🎁",
+        texto: "Llevo varios días preparando un regalo muy especial..."
+      },
+      {
+        icono: "😳",
+        texto: "Pero esta mañana me enteré de algo bastante importante."
+      },
+      {
+        icono: "🥳",
+        texto: "¡Hoy es el cumpleaños de alguien!"
+      },
+      {
+        icono: "🕵️",
+        texto: "He investigado un poco... y creo que esa persona eres tú."
+      },
+      {
+        icono: "🤨",
+        texto: "Aunque Internet está lleno de curiosos, así que no puedo confiar tan fácilmente."
+      },
+      {
+        icono: "🔐",
+        texto: "Necesito asegurarme de que realmente eres la cumpleañera."
+      }
+    ];
+
+    let pasoHistoria = 0;
+
+    const textoHistoria =
+      document.getElementById("textoHistoria");
+
+    const iconoHistoria =
+      document.getElementById("iconoHistoria");
+
+    const botonHistoria =
+      document.getElementById("botonHistoria");
 
     const campoContrasena =
       document.getElementById("contrasena");
@@ -538,41 +714,27 @@
     const botonRegalo =
       document.getElementById("botonRegalo");
 
-    function mostrarPantalla(idPantalla) {
-      const pantallas =
-        document.querySelectorAll(".pantalla");
+    botonHistoria.addEventListener(
+      "click",
+      function () {
+        pasoHistoria++;
 
-      pantallas.forEach(function (pantalla) {
-        pantalla.classList.remove("activa");
-      });
+        if (pasoHistoria < historias.length) {
+          textoHistoria.textContent =
+            historias[pasoHistoria].texto;
 
-      const pantallaSeleccionada =
-        document.getElementById(idPantalla);
+          iconoHistoria.textContent =
+            historias[pasoHistoria].icono;
 
-      pantallaSeleccionada.classList.add("activa");
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function comprobarContrasena() {
-      const textoIngresado =
-        campoContrasena.value;
-
-      if (textoIngresado === CONTRASENA_CORRECTA) {
-        mensajeError.textContent = "";
-
-        mostrarPantalla("pantalla3");
-      } else {
-        mensajeError.textContent =
-          "❌ Contraseña incorrecta. Inténtalo nuevamente.";
-
-        campoContrasena.value = "";
-        campoContrasena.focus();
+          if (pasoHistoria === historias.length - 1) {
+            botonHistoria.textContent =
+              "Comprobar identidad";
+          }
+        } else {
+          mostrarPantalla("pantalla2");
+        }
       }
-    }
+    );
 
     botonContrasena.addEventListener(
       "click",
@@ -591,22 +753,71 @@
     botonRegalo.addEventListener(
       "click",
       function () {
-        crearConfeti(70);
+        crearConfeti(80);
 
         setTimeout(function () {
-          mostrarPantalla("pantalla4");
-        }, 600);
+          mostrarPantalla("pantalla5");
+        }, 700);
       }
     );
 
+    function mostrarPantalla(idPantalla) {
+      const pantallas =
+        document.querySelectorAll(".pantalla");
+
+      pantallas.forEach(function (pantalla) {
+        pantalla.classList.remove("activa");
+      });
+
+      const seleccionada =
+        document.getElementById(idPantalla);
+
+      seleccionada.classList.add("activa");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function comprobarContrasena() {
+      const valor =
+        campoContrasena.value;
+
+      if (valor === CONTRASENA_CORRECTA) {
+        mensajeError.textContent = "";
+
+        mostrarPantalla("pantalla3");
+      } else {
+        mensajeError.textContent =
+          "😂 Mmmm... creo que no eres Hany. Inténtalo otra vez.";
+
+        campoContrasena.value = "";
+        campoContrasena.focus();
+      }
+    }
+
     function sorpresaFinal() {
-      mostrarPantalla("pantalla8");
-      crearConfeti(150);
+      mostrarPantalla("pantalla10");
+
+      crearConfeti(170);
+      crearCorazones(45);
     }
 
     function reiniciarSorpresa() {
       campoContrasena.value = "";
       mensajeError.textContent = "";
+
+      pasoHistoria = 0;
+
+      textoHistoria.textContent =
+        historias[0].texto;
+
+      iconoHistoria.textContent =
+        historias[0].icono;
+
+      botonHistoria.textContent =
+        "Continuar";
 
       mostrarPantalla("pantalla1");
     }
@@ -620,11 +831,7 @@
         "#ffffff"
       ];
 
-      for (
-        let numero = 0;
-        numero < cantidad;
-        numero++
-      ) {
+      for (let i = 0; i < cantidad; i++) {
         const pieza =
           document.createElement("div");
 
@@ -651,6 +858,31 @@
         setTimeout(function () {
           pieza.remove();
         }, 7000);
+      }
+    }
+
+    function crearCorazones(cantidad) {
+      for (let i = 0; i < cantidad; i++) {
+        const corazon =
+          document.createElement("div");
+
+        corazon.className = "corazon";
+        corazon.textContent = "❤️";
+
+        corazon.style.left =
+          Math.random() * 100 + "vw";
+
+        corazon.style.animationDuration =
+          4 + Math.random() * 4 + "s";
+
+        corazon.style.animationDelay =
+          Math.random() * 2 + "s";
+
+        document.body.appendChild(corazon);
+
+        setTimeout(function () {
+          corazon.remove();
+        }, 9000);
       }
     }
   </script>
