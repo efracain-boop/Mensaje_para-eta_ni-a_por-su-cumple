@@ -2,22 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Una sorpresa para Hany 🎁</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Sorpresa para Hany 🎁</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at top, #2d1b69 0%, #160c3b 45%, #09051d 100%);
+      font-family: Arial, Helvetica, sans-serif;
       color: white;
+      background:
+        radial-gradient(circle at top, #342074 0%, #190d42 45%, #080419 100%);
       overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font-family: inherit;
     }
 
     .stars,
@@ -26,14 +40,14 @@
       content: "";
       position: fixed;
       inset: 0;
+      pointer-events: none;
       background-image:
         radial-gradient(white 1px, transparent 1px),
         radial-gradient(white 1px, transparent 1px);
       background-size: 70px 70px, 110px 110px;
       background-position: 0 0, 35px 55px;
-      opacity: 0.35;
-      animation: twinkle 3s infinite alternate;
-      pointer-events: none;
+      opacity: 0.3;
+      animation: brillar 3s infinite alternate;
     }
 
     .stars::before {
@@ -48,9 +62,9 @@
       animation-delay: 2s;
     }
 
-    .screen {
+    .pantalla {
+      display: none;
       min-height: 100vh;
-      display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
@@ -58,21 +72,35 @@
       z-index: 2;
     }
 
-    .panel {
+    .pantalla.activa {
+      display: flex;
+      animation: aparecer 0.7s ease;
+    }
+
+    .panel,
+    .carta {
       width: 100%;
-      max-width: 430px;
+      max-width: 470px;
+      padding: 30px 24px;
+      border-radius: 26px;
+      text-align: center;
+    }
+
+    .panel {
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(12px);
-      border-radius: 26px;
-      padding: 28px 22px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.38);
     }
 
-    .lock {
-      font-size: 64px;
-      animation: pulse 1.8s infinite;
+    .panel-ancho {
+      max-width: 850px;
+    }
+
+    .carta {
+      color: #4a2340;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.38);
     }
 
     h1,
@@ -81,144 +109,164 @@
     }
 
     p {
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    input {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: none;
-      margin-top: 12px;
-      font-size: 17px;
-      outline: none;
-      text-align: center;
+    .icono-grande {
+      font-size: 68px;
+      animation: saltar 1.8s infinite;
     }
 
-    button {
+    .boton {
       width: 100%;
-      margin-top: 14px;
+      margin-top: 16px;
       border: none;
       border-radius: 999px;
-      padding: 14px 18px;
+      padding: 14px 20px;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
-      background: linear-gradient(90deg, #ff4fa3, #ff8a5b);
       color: white;
+      background: linear-gradient(90deg, #ff4fa3, #ff8a5b);
       box-shadow: 0 10px 24px rgba(255, 79, 163, 0.35);
     }
 
-    button:active {
+    .boton:active {
       transform: scale(0.98);
     }
 
-    #error {
+    .entrada {
+      width: 100%;
+      margin-top: 12px;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 17px;
+      text-align: center;
+      outline: none;
+    }
+
+    .error {
       min-height: 24px;
-      margin-top: 10px;
       color: #ffd3e7;
       font-weight: bold;
     }
 
-    #giftScreen,
-    #letterScreen {
-      display: none;
-    }
-
-    .gift-box {
-      font-size: 110px;
-      cursor: pointer;
+    .regalo {
       display: inline-block;
-      animation: shake 1.8s infinite;
-      user-select: none;
+      width: auto;
+      border: none;
+      background: transparent;
+      font-size: 120px;
+      cursor: pointer;
+      animation: moverRegalo 1.7s infinite;
     }
 
-    .hint {
-      opacity: 0.9;
-      font-size: 16px;
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
     }
 
-    .letter {
-      background: rgba(255, 255, 255, 0.96);
-      color: #4a2340;
-      border-radius: 24px;
-      padding: 28px 22px;
-      text-align: center;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
-      animation: appear 0.8s ease;
+    .foto {
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      padding: 18px;
+      background: linear-gradient(135deg, #ff4fa3, #7b2cbf);
+      font-size: 70px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     }
 
-    .letter .icon {
-      font-size: 62px;
-      animation: bounce 1.8s infinite;
+    .foto:nth-child(2) {
+      background: linear-gradient(135deg, #ff8a5b, #d63384);
     }
 
-    .signature {
-      margin-top: 18px;
-      color: #9b1c62;
+    .foto:nth-child(3) {
+      background: linear-gradient(135deg, #4361ee, #7209b7);
+    }
+
+    .texto-foto {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .firma {
+      margin-top: 22px;
       font-weight: bold;
+      color: #9b1c62;
     }
 
-    .confetti-piece {
+    .iconos-finales {
+      font-size: 30px;
+      letter-spacing: 7px;
+    }
+
+    .confeti {
       position: fixed;
       top: -20px;
       width: 10px;
       height: 16px;
-      opacity: 0.9;
-      z-index: 5;
-      animation: fall linear forwards;
+      z-index: 20;
+      animation: caer linear forwards;
     }
 
-    .balloon {
-      position: fixed;
-      bottom: -100px;
-      font-size: 46px;
-      z-index: 1;
-      animation: floatUp 10s linear infinite;
+    @media (max-width: 680px) {
+      .galeria {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .carta {
+        padding: 26px 19px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .foto {
+        min-height: 230px;
+      }
     }
 
-    .balloon:nth-of-type(1) {
-      left: 8%;
-      animation-delay: 0s;
-    }
-
-    .balloon:nth-of-type(2) {
-      left: 28%;
-      animation-delay: 2s;
-    }
-
-    .balloon:nth-of-type(3) {
-      left: 56%;
-      animation-delay: 4s;
-    }
-
-    .balloon:nth-of-type(4) {
-      left: 82%;
-      animation-delay: 6s;
-    }
-
-    @keyframes twinkle {
+    @keyframes brillar {
       from {
-        opacity: 0.2;
+        opacity: 0.18;
       }
 
       to {
-        opacity: 0.45;
+        opacity: 0.43;
       }
     }
 
-    @keyframes pulse {
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes saltar {
       0%,
       100% {
-        transform: scale(1);
+        transform: translateY(0);
       }
 
       50% {
-        transform: scale(1.08);
+        transform: translateY(-10px);
       }
     }
 
-    @keyframes shake {
+    @keyframes moverRegalo {
       0%,
       100% {
         transform: rotate(0deg);
@@ -233,40 +281,7 @@
       }
     }
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes bounce {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(-125vh);
-      }
-    }
-
-    @keyframes fall {
+    @keyframes caer {
       to {
         transform: translateY(110vh) rotate(720deg);
       }
@@ -277,118 +292,327 @@
 <body>
   <div class="stars"></div>
 
-  <div class="balloon">🎈</div>
-  <div class="balloon">🎈</div>
-  <div class="balloon">🎈</div>
-  <div class="balloon">🎈</div>
-
-  <section id="loginScreen" class="screen">
+  <!-- PANTALLA 1 -->
+  <section id="pantalla1" class="pantalla activa">
     <div class="panel">
-      <div class="lock">🔐</div>
+      <div class="icono-grande">✨</div>
 
-      <h1>Tienes un regalo especial</h1>
+      <h1>Hay una sorpresa para ti</h1>
 
       <p>
-        Esta sorpresa está protegida.
-        Escribe la contraseña para abrirla.
+        Avanza paso a paso y descubre cada parte de este regalo especial.
+      </p>
+
+      <button
+        class="boton"
+        onclick="mostrarPantalla('pantalla2')"
+      >
+        Comenzar
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2 -->
+  <section id="pantalla2" class="pantalla">
+    <div class="panel">
+      <div class="icono-grande">🔐</div>
+
+      <h2>Acceso secreto</h2>
+
+      <p>
+        Escribe la contraseña para poder continuar.
       </p>
 
       <input
-        id="passwordInput"
+        id="contrasena"
+        class="entrada"
         type="password"
         placeholder="Escribe la contraseña"
         autocomplete="off"
       >
 
-      <button id="unlockButton">
-        Abrir regalo
+      <button
+        id="botonContrasena"
+        class="boton"
+      >
+        Abrir sorpresa
       </button>
 
-      <div id="error"></div>
+      <p
+        id="mensajeError"
+        class="error"
+      ></p>
     </div>
   </section>
 
-  <section id="giftScreen" class="screen">
+  <!-- PANTALLA 3 -->
+  <section id="pantalla3" class="pantalla">
     <div class="panel">
-      <h1>🎉 Contraseña correcta 🎉</h1>
+      <h2>¡Contraseña correcta! 🎉</h2>
 
-      <p class="hint">
-        Ahora toca la caja para descubrir tu sorpresa.
+      <p>
+        Ahora toca la caja de regalo.
       </p>
 
-      <div id="giftBox" class="gift-box">🎁</div>
+      <button
+        id="botonRegalo"
+        class="regalo"
+        aria-label="Abrir regalo"
+      >
+        🎁
+      </button>
 
-      <p class="hint">
-        Toca el regalo
-      </p>
+      <p>Toca el regalo</p>
     </div>
   </section>
 
-  <section id="letterScreen" class="screen">
-    <div class="letter">
-      <div class="icon">🎂</div>
+  <!-- PANTALLA 4 -->
+  <section id="pantalla4" class="pantalla">
+    <div class="panel">
+      <div class="icono-grande">💖</div>
+
+      <h2>Un primer mensaje para ti</h2>
+
+      <p>
+        Hoy es un día especial porque celebramos tu vida, tu alegría
+        y todos esos momentos que haces más bonitos con tu forma de ser.
+      </p>
+
+      <p>
+        Esta sorpresa fue preparada con mucho cariño especialmente para ti.
+      </p>
+
+      <button
+        class="boton"
+        onclick="mostrarPantalla('pantalla5')"
+      >
+        Ver recuerdos
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 5 -->
+  <section id="pantalla5" class="pantalla">
+    <div class="panel panel-ancho">
+      <div class="icono-grande">📸</div>
+
+      <h2>Nuestros recuerdos</h2>
+
+      <p>
+        Después reemplazaremos estos cuadros por las fotos reales.
+      </p>
+
+      <div class="galeria">
+        <div>
+          <div class="foto">📸</div>
+          <div class="texto-foto">
+            Un momento especial
+          </div>
+        </div>
+
+        <div>
+          <div class="foto">💖</div>
+          <div class="texto-foto">
+            Una sonrisa inolvidable
+          </div>
+        </div>
+
+        <div>
+          <div class="foto">🎂</div>
+          <div class="texto-foto">
+            Otro bonito recuerdo
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="boton"
+        onclick="mostrarPantalla('pantalla6')"
+      >
+        Continuar
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 6 -->
+  <section id="pantalla6" class="pantalla">
+    <div class="panel">
+      <div class="icono-grande">🎬</div>
+
+      <h2>Una pausa especial</h2>
+
+      <p>
+        Aquí podremos colocar después un video corto, una canción
+        o un mensaje grabado.
+      </p>
+
+      <button
+        class="boton"
+        onclick="mostrarPantalla('pantalla7')"
+      >
+        Abrir carta final
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 7 -->
+  <section id="pantalla7" class="pantalla">
+    <div class="carta">
+      <div class="icono-grande">💌</div>
 
       <h1>¡Feliz cumpleaños, Hany!</h1>
 
       <p>
-        Hoy no podía dejar pasar la oportunidad de prepararte una sorpresa
-        especial.
+        Espero que hoy te consientan muchísimo, que comas pastel
+        sin contar las calorías y que recibas tantos regalos que ya
+        no sepas dónde guardarlos.
       </p>
 
       <p>
-        Espero que hoy te consientan muchísimo, que comas pastel sin contar las
-        calorías y que recibas tantos regalos que ya no sepas dónde guardarlos.
+        Gracias por ser una amiga increíble, por las risas,
+        los buenos momentos y por hacer que todo sea un poco
+        más divertido.
       </p>
 
       <p>
-        Gracias por ser una amiga increíble, por las risas, por los buenos
-        momentos y por hacer que todo sea un poco más divertido.
-      </p>
-
-      <p>
-        Deseo que este nuevo año de vida venga lleno de sueños cumplidos,
-        aventuras, felicidad y muchísimas razones para sonreír.
+        Deseo que este nuevo año de vida venga lleno de sueños
+        cumplidos, aventuras, felicidad y muchísimas razones
+        para sonreír.
       </p>
 
       <p>
         ¡Que tengas un cumpleaños inolvidable y que la pases increíble! 🥳
       </p>
 
-      <div class="signature">
+      <p class="firma">
         Con mucho cariño,<br>
         William 💖
-      </div>
+      </p>
 
-      <p>🎊 🎈 🎂 🎉</p>
+      <button
+        class="boton"
+        onclick="sorpresaFinal()"
+      >
+        Ver sorpresa final
+      </button>
+    </div>
+  </section>
+
+  <!-- PANTALLA 8 -->
+  <section id="pantalla8" class="pantalla">
+    <div class="panel">
+      <div class="icono-grande">🎉</div>
+
+      <h1>¡Feliz cumpleaños!</h1>
+
+      <p>
+        Que este nuevo año de vida esté lleno de alegría,
+        sueños cumplidos y momentos inolvidables.
+      </p>
+
+      <p class="iconos-finales">
+        🎊 🎂 🎈 ✨ 💖
+      </p>
+
+      <button
+        class="boton"
+        onclick="reiniciarSorpresa()"
+      >
+        Volver al inicio
+      </button>
     </div>
   </section>
 
   <script>
-    const PASSWORD = "Hany_192026";
+    const CONTRASENA_CORRECTA = "Hany_192026";
 
-    const loginScreen = document.getElementById("loginScreen");
-    const giftScreen = document.getElementById("giftScreen");
-    const letterScreen = document.getElementById("letterScreen");
+    const campoContrasena =
+      document.getElementById("contrasena");
 
-    const passwordInput = document.getElementById("passwordInput");
-    const unlockButton = document.getElementById("unlockButton");
-    const error = document.getElementById("error");
-    const giftBox = document.getElementById("giftBox");
+    const botonContrasena =
+      document.getElementById("botonContrasena");
 
-    function checkPassword() {
-      if (passwordInput.value === PASSWORD) {
-        error.textContent = "";
-        loginScreen.style.display = "none";
-        giftScreen.style.display = "flex";
+    const mensajeError =
+      document.getElementById("mensajeError");
+
+    const botonRegalo =
+      document.getElementById("botonRegalo");
+
+    function mostrarPantalla(idPantalla) {
+      const pantallas =
+        document.querySelectorAll(".pantalla");
+
+      pantallas.forEach(function (pantalla) {
+        pantalla.classList.remove("activa");
+      });
+
+      const pantallaSeleccionada =
+        document.getElementById(idPantalla);
+
+      pantallaSeleccionada.classList.add("activa");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function comprobarContrasena() {
+      const textoIngresado =
+        campoContrasena.value;
+
+      if (textoIngresado === CONTRASENA_CORRECTA) {
+        mensajeError.textContent = "";
+
+        mostrarPantalla("pantalla3");
       } else {
-        error.textContent = "❌ Contraseña incorrecta. Inténtalo nuevamente.";
-        passwordInput.value = "";
-        passwordInput.focus();
+        mensajeError.textContent =
+          "❌ Contraseña incorrecta. Inténtalo nuevamente.";
+
+        campoContrasena.value = "";
+        campoContrasena.focus();
       }
     }
 
-    function createConfetti() {
-      const colors = [
+    botonContrasena.addEventListener(
+      "click",
+      comprobarContrasena
+    );
+
+    campoContrasena.addEventListener(
+      "keydown",
+      function (evento) {
+        if (evento.key === "Enter") {
+          comprobarContrasena();
+        }
+      }
+    );
+
+    botonRegalo.addEventListener(
+      "click",
+      function () {
+        crearConfeti(70);
+
+        setTimeout(function () {
+          mostrarPantalla("pantalla4");
+        }, 600);
+      }
+    );
+
+    function sorpresaFinal() {
+      mostrarPantalla("pantalla8");
+      crearConfeti(150);
+    }
+
+    function reiniciarSorpresa() {
+      campoContrasena.value = "";
+      mensajeError.textContent = "";
+
+      mostrarPantalla("pantalla1");
+    }
+
+    function crearConfeti(cantidad) {
+      const colores = [
         "#ff4fa3",
         "#ffd166",
         "#06d6a0",
@@ -396,39 +620,39 @@
         "#ffffff"
       ];
 
-      for (let i = 0; i < 90; i++) {
-        const confetti = document.createElement("div");
-        confetti.className = "confetti-piece";
+      for (
+        let numero = 0;
+        numero < cantidad;
+        numero++
+      ) {
+        const pieza =
+          document.createElement("div");
 
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.background =
-          colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animationDuration =
+        pieza.className = "confeti";
+
+        pieza.style.left =
+          Math.random() * 100 + "vw";
+
+        pieza.style.background =
+          colores[
+            Math.floor(
+              Math.random() * colores.length
+            )
+          ];
+
+        pieza.style.animationDuration =
           3 + Math.random() * 3 + "s";
-        confetti.style.animationDelay =
-          Math.random() * 1.5 + "s";
 
-        document.body.appendChild(confetti);
+        pieza.style.animationDelay =
+          Math.random() * 1.2 + "s";
 
-        setTimeout(() => {
-          confetti.remove();
+        document.body.appendChild(pieza);
+
+        setTimeout(function () {
+          pieza.remove();
         }, 7000);
       }
     }
-
-    unlockButton.addEventListener("click", checkPassword);
-
-    passwordInput.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        checkPassword();
-      }
-    });
-
-    giftBox.addEventListener("click", function () {
-      giftScreen.style.display = "none";
-      letterScreen.style.display = "flex";
-      createConfetti();
-    });
   </script>
 </body>
 </html>
