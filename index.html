@@ -206,6 +206,15 @@
       background: linear-gradient(135deg, #4361ee, #7209b7);
     }
 
+    .foto img {
+      width: 100%;
+      height: 100%;
+      min-height: 270px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+
     .texto-foto {
       margin-top: 9px;
       font-size: 14px;
@@ -339,54 +348,7 @@
     </button>
   </div>
 </section>
-  <section id="pantalla1" class="pantalla activa">
-    <div class="panel">
-      <div class="icono">🎁</div>
 
-      <h1>Un momento...</h1>
-
-      <p>
-        👀 Antes de continuar necesito comprobar algo...
-      </p>
-
-      <p>
-        Llevo varios días preparando un regalo muy especial...
-      </p>
-
-      <p>
-        Pero esta mañana me enteré de que
-        <strong>¡alguien está de cumpleaños!</strong> 🥳
-      </p>
-
-      <p>
-        Y, por lo que investigué...
-        creo que esa persona eres tú. 😏
-      </p>
-
-      <p>
-        Aunque... Internet está lleno de curiosos 🤭.
-      </p>
-
-      <p>
-        No puedo entregar este regalo a cualquiera.
-      </p>
-
-      <p>
-        Necesito asegurarme de que realmente eres la cumpleañera.
-      </p>
-
-      <p>
-        Así que solo tengo una pregunta...
-      </p>
-
-      <button
-        class="boton"
-        onclick="mostrarPantalla('pantalla2')"
-      >
-        Continuar
-      </button>
-    </div>
-  </section>
 
   <!-- PANTALLA 2: CONTRASEÑA -->
   <section id="pantalla2" class="pantalla">
@@ -701,6 +663,8 @@
   </section>
 
   <script>
+    const CONTRASENA_CORRECTA = "Hany_192026";
+
     const pasosHistoria = [
   {
     icono: "🎁",
@@ -845,6 +809,12 @@ botonHistoria.addEventListener("click", function () {
     function reiniciarSorpresa() {
       campoContrasena.value = "";
       mensajeError.textContent = "";
+
+      pasoActual = 0;
+      iconoHistoria.textContent = pasosHistoria[0].icono;
+      tituloHistoria.textContent = pasosHistoria[0].titulo;
+      textoHistoria.textContent = pasosHistoria[0].texto;
+      botonHistoria.textContent = "Continuar";
 
       mostrarPantalla("pantalla1");
     }
