@@ -80,7 +80,7 @@
     .panel,
     .carta {
       width: 100%;
-      max-width: 480px;
+      max-width: 490px;
       padding: 30px 24px;
       border-radius: 28px;
       text-align: center;
@@ -116,16 +116,6 @@
     .icono {
       font-size: 70px;
       animation: saltar 1.8s infinite;
-    }
-
-    .mensaje-historia {
-      min-height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 21px;
-      line-height: 1.6;
-      padding: 10px;
     }
 
     .boton {
@@ -170,8 +160,15 @@
 
     .pista {
       font-size: 14px;
-      opacity: 0.85;
+      opacity: 0.88;
       font-style: italic;
+    }
+
+    .mision {
+      margin: 18px 0;
+      padding: 17px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .regalo {
@@ -181,13 +178,6 @@
       font-size: 125px;
       cursor: pointer;
       animation: moverRegalo 1.7s infinite;
-    }
-
-    .mision {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 18px;
-      padding: 16px;
-      margin: 18px 0;
     }
 
     .galeria {
@@ -208,11 +198,11 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     }
 
-    .foto:nth-child(2) {
+    .foto2 {
       background: linear-gradient(135deg, #ff8a5b, #d63384);
     }
 
-    .foto:nth-child(3) {
+    .foto3 {
       background: linear-gradient(135deg, #4361ee, #7209b7);
     }
 
@@ -261,10 +251,6 @@
 
       h1 {
         font-size: 28px;
-      }
-
-      .mensaje-historia {
-        font-size: 19px;
       }
     }
 
@@ -334,21 +320,50 @@
 <body>
   <div class="estrellas"></div>
 
-  <!-- PANTALLA 1: HISTORIA -->
+  <!-- PANTALLA 1: INTRODUCCIÓN -->
   <section id="pantalla1" class="pantalla activa">
     <div class="panel">
-      <div id="iconoHistoria" class="icono">👀</div>
+      <div class="icono">🎁</div>
 
-      <div
-        id="textoHistoria"
-        class="mensaje-historia"
-      >
-        Un momento...
-      </div>
+      <h1>Un momento...</h1>
+
+      <p>
+        👀 Antes de continuar necesito comprobar algo...
+      </p>
+
+      <p>
+        Llevo varios días preparando un regalo muy especial...
+      </p>
+
+      <p>
+        Pero esta mañana me enteré de que
+        <strong>¡alguien está de cumpleaños!</strong> 🥳
+      </p>
+
+      <p>
+        Y, por lo que investigué...
+        creo que esa persona eres tú. 😏
+      </p>
+
+      <p>
+        Aunque... Internet está lleno de curiosos 🤭.
+      </p>
+
+      <p>
+        No puedo entregar este regalo a cualquiera.
+      </p>
+
+      <p>
+        Necesito asegurarme de que realmente eres la cumpleañera.
+      </p>
+
+      <p>
+        Así que solo tengo una pregunta...
+      </p>
 
       <button
-        id="botonHistoria"
         class="boton"
+        onclick="mostrarPantalla('pantalla2')"
       >
         Continuar
       </button>
@@ -363,12 +378,7 @@
       <h1>¿Conoces la contraseña secreta?</h1>
 
       <p>
-        Internet está lleno de curiosos. 🤭
-        No puedo entregar este regalo a cualquiera.
-      </p>
-
-      <p>
-        Necesito comprobar que realmente eres la cumpleañera.
+        Solo la verdadera dueña del regalo puede continuar. 😏
       </p>
 
       <input
@@ -387,7 +397,7 @@
       </button>
 
       <p class="pista">
-        Pista: la verdadera dueña del regalo la sabe. 😉
+        Pista: la verdadera cumpleañera la sabe. 😉
       </p>
 
       <p
@@ -400,24 +410,29 @@
   <!-- PANTALLA 3: IDENTIDAD CONFIRMADA -->
   <section id="pantalla3" class="pantalla">
     <div class="panel">
-      <div class="icono">😌</div>
+      <div class="icono">🟢</div>
 
-      <h1>¡Ufff, menos mal!</h1>
+      <h1>¡Perfecto!</h1>
 
       <p>
-        Ya me estaba preocupando...
+        Ya confirmé tu identidad...
       </p>
 
       <p>
-        Contraseña correcta. Creo que sí eres la dueña del regalo. 😄
+        Creo que sí eres la dueña del regalo. 😄
       </p>
 
       <p>
-        Pero antes de entregártelo tengo una pequeña misión para ti.
+        Pero antes de entregártelo...
+      </p>
+
+      <p>
+        Tengo una pequeña misión para ti.
       </p>
 
       <div class="mision">
-        <strong>Misión:</strong><br><br>
+        <strong>Tu misión:</strong>
+        <br><br>
         Toca la caja de regalo y prepárate para comenzar la aventura. ✨
       </div>
 
@@ -425,18 +440,22 @@
         class="boton"
         onclick="mostrarPantalla('pantalla4')"
       >
-        Aceptar misión
+        Continuar
       </button>
     </div>
   </section>
 
-  <!-- PANTALLA 4: CAJA -->
+  <!-- PANTALLA 4: CAJA DE REGALO -->
   <section id="pantalla4" class="pantalla">
     <div class="panel">
       <h1>Tu regalo está aquí</h1>
 
       <p>
-        Parece tranquilo... pero creo que está escondiendo algo. 👀
+        Parece una caja normal...
+      </p>
+
+      <p>
+        Aunque está temblando un poco. 👀
       </p>
 
       <button
@@ -461,25 +480,28 @@
       <h1>¡Sorpresa!</h1>
 
       <p>
-        No, todavía no es la carta final. 😏
+        Tranquila... todavía no es la carta final. 😏
       </p>
 
       <p>
         Primero quería recordarte que hoy celebramos tu vida,
-        tu alegría y esa forma tan especial que tienes de hacer
+        tu alegría y esa forma especial que tienes de hacer
         que los momentos sean más divertidos.
       </p>
 
       <p>
         Y como un regalo normal era demasiado sencillo...
-        decidí convertirlo en una pequeña aventura.
+      </p>
+
+      <p>
+        Decidí convertirlo en una pequeña aventura. 🎉
       </p>
 
       <button
         class="boton"
         onclick="mostrarPantalla('pantalla6')"
       >
-        Descubrir la siguiente sorpresa
+        Ver la siguiente sorpresa
       </button>
     </div>
   </section>
@@ -492,8 +514,7 @@
       <h1>Algunos recuerdos</h1>
 
       <p>
-        Aquí colocaremos tus fotos reales.
-        Por ahora están estos espacios de ejemplo.
+        Aquí pondremos las fotos reales más adelante.
       </p>
 
       <div class="galeria">
@@ -505,14 +526,14 @@
         </div>
 
         <div>
-          <div class="foto">💖</div>
+          <div class="foto foto2">💖</div>
           <div class="texto-foto">
             Una sonrisa inolvidable
           </div>
         </div>
 
         <div>
-          <div class="foto">🎂</div>
+          <div class="foto foto3">🎂</div>
           <div class="texto-foto">
             Otro bonito recuerdo
           </div>
@@ -528,7 +549,7 @@
     </div>
   </section>
 
-  <!-- PANTALLA 7: SUSPENSO -->
+  <!-- PANTALLA 7: MENSAJE CON HUMOR -->
   <section id="pantalla7" class="pantalla">
     <div class="panel">
       <div class="icono">🤔</div>
@@ -549,6 +570,9 @@
 
       <p>
         Bueno, confiaremos en la contraseña.
+      </p>
+
+      <p>
         Ahora sí puedes abrir la carta.
       </p>
 
@@ -591,7 +615,8 @@
       </p>
 
       <p class="firma">
-        Con mucho cariño,<br>
+        Con mucho cariño,
+        <br>
         William 💖
       </p>
 
@@ -660,48 +685,6 @@
   <script>
     const CONTRASENA_CORRECTA = "Hany_192026";
 
-    const historias = [
-      {
-        icono: "👀",
-        texto: "Un momento... Antes de continuar necesito comprobar algo."
-      },
-      {
-        icono: "🎁",
-        texto: "Llevo varios días preparando un regalo muy especial..."
-      },
-      {
-        icono: "😳",
-        texto: "Pero esta mañana me enteré de algo bastante importante."
-      },
-      {
-        icono: "🥳",
-        texto: "¡Hoy es el cumpleaños de alguien!"
-      },
-      {
-        icono: "🕵️",
-        texto: "He investigado un poco... y creo que esa persona eres tú."
-      },
-      {
-        icono: "🤨",
-        texto: "Aunque Internet está lleno de curiosos, así que no puedo confiar tan fácilmente."
-      },
-      {
-        icono: "🔐",
-        texto: "Necesito asegurarme de que realmente eres la cumpleañera."
-      }
-    ];
-
-    let pasoHistoria = 0;
-
-    const textoHistoria =
-      document.getElementById("textoHistoria");
-
-    const iconoHistoria =
-      document.getElementById("iconoHistoria");
-
-    const botonHistoria =
-      document.getElementById("botonHistoria");
-
     const campoContrasena =
       document.getElementById("contrasena");
 
@@ -713,28 +696,6 @@
 
     const botonRegalo =
       document.getElementById("botonRegalo");
-
-    botonHistoria.addEventListener(
-      "click",
-      function () {
-        pasoHistoria++;
-
-        if (pasoHistoria < historias.length) {
-          textoHistoria.textContent =
-            historias[pasoHistoria].texto;
-
-          iconoHistoria.textContent =
-            historias[pasoHistoria].icono;
-
-          if (pasoHistoria === historias.length - 1) {
-            botonHistoria.textContent =
-              "Comprobar identidad";
-          }
-        } else {
-          mostrarPantalla("pantalla2");
-        }
-      }
-    );
 
     botonContrasena.addEventListener(
       "click",
@@ -753,7 +714,7 @@
     botonRegalo.addEventListener(
       "click",
       function () {
-        crearConfeti(80);
+        crearConfeti(90);
 
         setTimeout(function () {
           mostrarPantalla("pantalla5");
@@ -800,24 +761,13 @@
     function sorpresaFinal() {
       mostrarPantalla("pantalla10");
 
-      crearConfeti(170);
-      crearCorazones(45);
+      crearConfeti(180);
+      crearCorazones(50);
     }
 
     function reiniciarSorpresa() {
       campoContrasena.value = "";
       mensajeError.textContent = "";
-
-      pasoHistoria = 0;
-
-      textoHistoria.textContent =
-        historias[0].texto;
-
-      iconoHistoria.textContent =
-        historias[0].icono;
-
-      botonHistoria.textContent =
-        "Continuar";
 
       mostrarPantalla("pantalla1");
     }
