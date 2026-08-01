@@ -320,7 +320,25 @@
 <body>
   <div class="estrellas"></div>
 
-  <!-- PANTALLA 1: INTRODUCCIÓN -->
+  <!-- PANTALLA 1: HISTORIA POR PASOS -->
+<section id="pantalla1" class="pantalla activa">
+  <div class="panel">
+    <div id="iconoHistoria" class="icono">🎁</div>
+
+    <h1 id="tituloHistoria">Un momento...</h1>
+
+    <p id="textoHistoria">
+      👀 Antes de continuar necesito comprobar algo...
+    </p>
+
+    <button
+      id="botonHistoria"
+      class="boton"
+    >
+      Continuar
+    </button>
+  </div>
+</section>
   <section id="pantalla1" class="pantalla activa">
     <div class="panel">
       <div class="icono">🎁</div>
@@ -683,7 +701,66 @@
   </section>
 
   <script>
-    const CONTRASENA_CORRECTA = "Hany_192026";
+    const pasosHistoria = [
+  {
+    icono: "🎁",
+    titulo: "Un momento...",
+    texto: "👀 Antes de continuar necesito comprobar algo..."
+  },
+  {
+    icono: "🎀",
+    titulo: "He estado preparando algo",
+    texto: "Llevo varios días preparando un regalo muy especial..."
+  },
+  {
+    icono: "😳",
+    titulo: "Pero ocurrió algo...",
+    texto: "Esta mañana me enteré de que ¡alguien está de cumpleaños! 🥳"
+  },
+  {
+    icono: "🕵️",
+    titulo: "He investigado un poco...",
+    texto: "Y, por lo que investigué... creo que esa persona eres tú. 😏"
+  },
+  {
+    icono: "🤭",
+    titulo: "Aunque hay un problema...",
+    texto: "Internet está lleno de curiosos. No puedo entregar este regalo a cualquiera."
+  },
+  {
+    icono: "🔎",
+    titulo: "Necesito comprobarlo",
+    texto: "Debo asegurarme de que realmente eres la cumpleañera."
+  },
+  {
+    icono: "🔐",
+    titulo: "Solo queda una pregunta...",
+    texto: "¿Conoces la contraseña secreta?"
+  }
+];
+
+let pasoActual = 0;
+
+const iconoHistoria = document.getElementById("iconoHistoria");
+const tituloHistoria = document.getElementById("tituloHistoria");
+const textoHistoria = document.getElementById("textoHistoria");
+const botonHistoria = document.getElementById("botonHistoria");
+
+botonHistoria.addEventListener("click", function () {
+  pasoActual++;
+
+  if (pasoActual < pasosHistoria.length) {
+    iconoHistoria.textContent = pasosHistoria[pasoActual].icono;
+    tituloHistoria.textContent = pasosHistoria[pasoActual].titulo;
+    textoHistoria.textContent = pasosHistoria[pasoActual].texto;
+
+    if (pasoActual === pasosHistoria.length - 1) {
+      botonHistoria.textContent = "Ingresar contraseña";
+    }
+  } else {
+    mostrarPantalla("pantalla2");
+  }
+});
 
     const campoContrasena =
       document.getElementById("contrasena");
